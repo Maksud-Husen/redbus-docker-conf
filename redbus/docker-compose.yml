@@ -1,0 +1,37 @@
+services:
+  backend:
+    build: ./back-end-redbus
+    ports:
+      - "3020:3020"
+    networks:
+      - redbus-network
+    environment:
+      MONGO_URI: mongodb://mongo:27017/redbus  
+    depends_on:
+      - mongo
+
+  frontend:
+    build: ./front-end-redbus
+    ports:
+      - "3000:3000"
+    networks:
+      - redbus-network
+    environment:
+      - REACT_APP_BACKEND_URL=https://redbus-backend-udit.herokuapp.com     
+
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+    networks:
+      - redbus-network
+    volumes:
+      - mongo-data:/data/db
+
+networks:
+  redbus-network:
+    driver: bridge
+
+volumes:
+  mongo-data:
+    driver: local
