@@ -18,7 +18,8 @@ services:
       - redbus-network
     environment:
       REACT_APP_BACKEND_URL: https://backend:3020  
-
+    stdin_open: true  
+    tty: true
   mongo:
     image: mongo
     ports:
