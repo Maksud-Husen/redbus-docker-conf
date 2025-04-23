@@ -11,6 +11,14 @@ pipeline {
             }
         }
 
+        stage('Debug - List Files') {
+            steps {
+                dir('redbus') {
+                    sh 'ls -la'
+                }
+            }
+        }
+
         stage('Build img') {
             steps {
                 echo 'Building Docker images...'
