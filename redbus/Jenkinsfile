@@ -33,7 +33,7 @@ pipeline {
                 sh 'docker compose -f redbus/docker-compose.yml up -d'
             }
         }
-        stage{
+        stage('Test') {
             steps {
                 echo 'automation test'
             }
