@@ -16,7 +16,7 @@ pipeline {
                 echo 'Building Docker images...'
 
                 sh '''
-                cd redbus
+                cd redbus-docker-conf
                 docker compose -f docker-compose.yml build
                 '''
             }
@@ -26,7 +26,7 @@ pipeline {
             steps {
                 echo 'Deploying application...'
                 sh '''
-                cd redbus
+                cd redbus-docker-conf
                 docker compose -f docker-compose.yml build
                 '''
             }
