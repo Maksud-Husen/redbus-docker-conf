@@ -15,20 +15,14 @@ pipeline {
             steps {
                 echo 'Building Docker images...'
 
-                sh '''
-                cd redbus-docker-conf
-                docker compose -f docker-compose.yml build
-                '''
+                sh 'docker compose -f docker-compose.yml build'
             }
         }
 
         stage('Deploy') {
             steps {
                 echo 'Deploying application...'
-                sh '''
-                cd redbus-docker-conf
-                docker compose -f docker-compose.yml build
-                '''
+                sh 'docker compose -f docker-compose.yml build'
             }
         }
     }
