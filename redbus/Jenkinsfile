@@ -11,14 +11,14 @@ pipeline {
         stage('Build img') {
             steps {
                 echo 'Building Docker images...'
-                sh 'docker-compose -f docker-compose.yml build'
+                sh 'docker compose -f docker-compose.yml build'
             }
         }
 
         stage('Deploy') {
             steps {
                 echo 'Deploying application...'
-                sh 'docker-compose -f docker-compose.yml up -d'
+                sh 'docker compose -f docker-compose.yml up -d'
             }
         }
     }
