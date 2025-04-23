@@ -30,7 +30,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying application...'
-                sh 'docker compose -f redbus-docker-conf/redbus/docker-compose.yml build'
+                sh 'docker compose -f redbus-docker-conf/redbus/docker-compose.yml up -d'
             }
         }
     }
