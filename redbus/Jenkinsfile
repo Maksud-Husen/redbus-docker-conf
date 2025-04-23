@@ -13,7 +13,7 @@ pipeline {
 
         stage('Debug - List Files') {
             steps {
-                dir('redbus') {
+                dir('redbus-docker-conf/redbus') {
                     sh 'ls -la'
                 }
             }
@@ -23,17 +23,14 @@ pipeline {
             steps {
                 echo 'Building Docker images...'
 
-                dir('redbus') {
-                    sh 'docker compose -f docker-compose.yml build'
-                }
-                echo 'Docker images built successfully.'
+                sh 'docker compose -f redbus-docker-conf/redbus/docker-compose.yml build'
             }
         }
 
         stage('Deploy') {
             steps {
                 echo 'Deploying application...'
-                sh 'docker compose -f redbus/docker-compose.yml build'
+                sh 'docker compose -f redbus-docker-conf/redbus/docker-compose.yml build'
             }
         }
     }
