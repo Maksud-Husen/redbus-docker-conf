@@ -36,9 +36,9 @@ pipeline {
         stage{
             steps {
                 echo 'automation test'
+            }
         }
     }
-
     post {
         always {
             echo 'Build completed.'
