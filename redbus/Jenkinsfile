@@ -1,0 +1,38 @@
+pipelime{
+    agent jendoc
+
+    stages {
+        stage('Checkout') {
+            steps {
+                echo 'Cloning repository...'
+                sh '''
+                rm -rf redbus 
+                git clone https://github.com/Maksud-Husen/redbus-docker-conf.git
+                '''   
+
+            }
+        }
+        stage ('Build img') {
+            steps {
+                echo 'Building Docker images...'
+                sh 'docker-compose -f docker-compose.yml build'
+            }
+        
+        }
+        stage ('Deploy') {
+            steps {
+                echo 'Deploying application...'
+                sh 'docker-compose -f docker-compose.yml up -d'
+            }
+        }
+
+    } 
+    post {
+        always {
+            echo 'Build completed.'
+        }
+        failure {
+            echo 'Build failed.'
+        }
+    }       
+}   

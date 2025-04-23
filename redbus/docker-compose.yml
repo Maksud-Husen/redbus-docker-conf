@@ -17,7 +17,7 @@ services:
     networks:
       - redbus-network
     environment:
-      - REACT_APP_BACKEND_URL=https://redbus-backend-udit.herokuapp.com     
+      REACT_APP_BACKEND_URL: https://redbus-backend-udit.herokuapp.com     
 
   mongo:
     image: mongo
