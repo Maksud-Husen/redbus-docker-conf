@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+  namespace: redbus
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - name: backend
+        image: maksudhu/todo-backend:v1.0.0
+        ports:
+        - containerPort: 3020
+        envFrom:
+        - configMapRef:
+            name: mongo-config
+        - secretRef:
+            name: mongo-secret
+      
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-service
+  namespace: redbus
+spec:
+  selector:
+    app: backend
+  ports:
+  - protocol: TCP
+    port: 3020
+    targetPort: 3020
+  type: LoadBalancer
